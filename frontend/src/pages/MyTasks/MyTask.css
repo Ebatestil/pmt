@@ -1,0 +1,138 @@
+.mytasks-page {
+  --mt-bg: #14151a;
+  --mt-card-bg: #1c1d24;
+  --mt-border: #2c2d35;
+  --mt-text: #f2f1ee;
+  --mt-text-soft: #9b9ca6;
+  --mt-text-faint: #6b6c76;
+  --mt-accent: #e3ad5c;
+  --mt-accent-text: #1c1208;
+  --mt-row-hover: #24252d;
+ 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--mt-bg);
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  color: var(--mt-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+ 
+.mytasks-page[data-theme="light"] {
+  --mt-bg: #fafaf8;
+  --mt-card-bg: #ffffff;
+  --mt-border: #e4e4e0;
+  --mt-text: #16181d;
+  --mt-text-soft: #6b6c76;
+  --mt-text-faint: #9b9ca6;
+  --mt-accent: #e3ad5c;
+  --mt-accent-text: #1c1208;
+  --mt-row-hover: #f5f4f1;
+}
+ 
+.mytasks-body {
+  display: flex;
+  flex: 1;
+}
+
+.mytasks-content {
+  flex: 1;
+  padding: 32px 40px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* ===== Header ===== */
+.mytasks-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.mytasks-heading {
+  font-family: "Georgia", "Iowan Old Style", serif;
+  font-size: 28px;
+  font-weight: 400;
+  margin: 0 0 6px 0;
+  color: var(--mt-text);
+}
+
+.mytasks-subheading {
+  font-size: 14px;
+  color: var(--mt-text-soft);
+  margin: 0;
+}
+
+/* table */
+.mytasks-table-wrap {
+  border: 1px solid var(--mt-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--mt-card-bg);
+}
+
+.mytasks-table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.mytasks-table thead {
+  background-color: var(--mt-row-hover);
+}
+
+.mytasks-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mt-text-soft);
+  border-bottom: 1px solid var(--mt-border);
+}
+
+.mytasks-table td {
+  padding: 14px 16px;
+  color: var(--mt-text);
+  border-bottom: 1px solid var(--mt-border);
+}
+
+.mytasks-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mytasks-table tbody tr:hover {
+  background-color: var(--mt-row-hover);
+}
+
+.mytasks-table__row--clickable {
+  cursor: pointer;
+}
+
+.mytasks-status {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.mytasks-status--in_progress {
+  background-color: rgba(47, 111, 98, 0.15);
+  color: #8b96ff;
+}
+
+.mytasks-status--done {
+  background-color: rgba(79, 90, 255, 0.12);
+  color: #4fad8f;
+}
+
+.mytasks-status--todo {
+  background-color: rgba(227, 173, 92, 0.12);
+  color: #e3ad5c;
+}
+

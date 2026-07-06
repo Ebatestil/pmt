@@ -1,0 +1,318 @@
+/* ===== Tokens ===== */
+:root {
+  --color-panel-bg: #14151a;
+  --color-card-bg: #1c1d24;
+  --color-border: #2c2d35;
+  --color-text: #f2f1ee;
+  --color-text-soft: #9b9ca6;
+  --color-text-faint: #6b6c76;
+  --color-accent: #e3ad5c;
+  --color-accent-dark: #c8923f;
+  --color-accent-text: #1c1208;
+
+  --font-display: "Georgia", "Iowan Old Style", serif;
+  --font-sans: "Inter", -apple-system, "Segoe UI", sans-serif;
+
+  --radius-input: 8px;
+}
+
+/* ===== Page layout ===== */
+.register-page {
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background-color: var(--color-panel-bg);
+  font-family: var(--font-sans);
+  color: var(--color-text);
+}
+
+/* ===== Left visual side ===== */
+.register-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 56px;
+  background-color: #3a3a3a;
+  background-image:
+    linear-gradient(180deg, rgba(10, 10, 12, 0.55) 0%, rgba(10, 10, 12, 0.75) 70%, rgba(10, 10, 12, 0.92) 100%),
+    radial-gradient(circle at 70% 30%, rgba(90, 90, 95, 0.6), rgba(40, 40, 42, 0.9));
+  overflow: hidden;
+}
+
+.register-visual__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+}
+
+.register-visual__brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.register-visual__logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background-color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-visual__logo-ring {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2.5px solid var(--color-accent-text);
+}
+
+.register-visual__wordmark {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+}
+
+.register-visual__quote {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+}
+
+.register-visual__quote-text {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.3;
+  color: var(--color-text);
+  margin: 0 0 20px 0;
+}
+
+.register-visual__byline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--color-text-soft);
+}
+
+.register-visual__byline-rule {
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-text-soft);
+  display: inline-block;
+}
+
+.register-visual__dots {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 6px;
+}
+
+.register-visual__dot {
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: rgba(242, 241, 238, 0.25);
+}
+
+.register-visual__dot--active {
+  background-color: var(--color-accent);
+}
+
+/* ===== Right form panel ===== */
+.register-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  background-color: var(--color-panel-bg);
+}
+
+.register-form-wrap {
+  width: 100%;
+  max-width: 380px;
+}
+
+.register-heading {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 8px 0;
+  color: var(--color-text);
+}
+
+.register-subheading {
+  font-size: 14px;
+  color: var(--color-text-soft);
+  margin: 0 0 32px 0;
+}
+
+/* ===== Form ===== */
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.register-field__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  margin-bottom: 8px;
+}
+
+.register-field__input {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: var(--radius-input);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.register-field__input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.register-field__input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(227, 173, 92, 0.18);
+}
+
+.register-field__password-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.register-field__password-row .register-field__input {
+  padding-right: 46px;
+}
+
+.register-field__toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-text-faint);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.register-field__toggle:hover {
+  color: var(--color-text-soft);
+}
+
+/* ===== Submit ===== */
+.register-submit {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-accent-text);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-input);
+  padding: 13px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+.register-submit:hover {
+  background-color: var(--color-accent-dark);
+}
+
+.register-submit:active {
+  transform: translateY(1px);
+}
+
+.register-submit__arrow {
+  font-size: 16px;
+}
+
+/* ===== Footer ===== */
+.register-footer {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-soft);
+  margin: 28px 0 0 0;
+}
+
+.register-footer a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Focus visibility ===== */
+.register-submit:focus-visible,
+.register-field__input:focus-visible,
+.register-field__toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .register-page {
+    grid-template-columns: 1fr;
+  }
+
+  .register-visual {
+    display: none;
+  }
+
+  .register-panel {
+    padding: 32px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .register-field__input,
+  .register-submit {
+    transition: none;
+  }
+}
+
+.register-form__error {
+  background-color: rgba(199, 93, 67, 0.12);
+  color: #e08a6f;
+  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-input);
+  margin-bottom: 20px;
+  border: 1px solid rgba(199, 93, 67, 0.3);
+}

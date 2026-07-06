@@ -1,0 +1,184 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.modal-card {
+  --modal-bg: #1c1d24;
+  --modal-border: #2c2d35;
+  --modal-text: #f2f1ee;
+  --modal-text-soft: #9b9ca6;
+  --modal-input-bg: #14151a;
+  --modal-accent: #e3ad5c;
+  --modal-accent-text: #1c1208;
+  --modal-danger-bg: rgba(199, 93, 67, 0.12);
+  --modal-danger-text: #e08a6f;
+  --modal-danger-border: rgba(199, 93, 67, 0.3);
+  --modal-cancel-hover: #24252d;
+
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--modal-bg);
+  border: 1px solid var(--modal-border);
+  border-radius: 14px;
+  padding: 28px;
+  box-sizing: border-box;
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  color: var(--modal-text);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* ===== Light theme override ===== */
+.modal-card[data-theme="light"] {
+  --modal-bg: #ffffff;
+  --modal-border: #e4e4e0;
+  --modal-text: #16181d;
+  --modal-text-soft: #6b6c76;
+  --modal-input-bg: #fafaf8;
+  --modal-accent: #e3ad5c;
+  --modal-accent-text: #1c1208;
+  --modal-danger-bg: rgba(199, 93, 67, 0.08);
+  --modal-danger-text: #c75d43;
+  --modal-danger-border: rgba(199, 93, 67, 0.25);
+  --modal-cancel-hover: #f5f4f1;
+}
+
+.modal-heading {
+  font-family: "Georgia", "Iowan Old Style", serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 0 6px 0;
+  color: var(--modal-text);
+}
+
+.modal-subheading {
+  font-size: 14px;
+  color: var(--modal-text-soft);
+  margin: 0 0 20px 0;
+}
+
+.modal-error {
+  background-color: var(--modal-danger-bg);
+  color: var(--modal-danger-text);
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid var(--modal-danger-border);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.modal-field__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--modal-text-soft);
+  margin-bottom: 8px;
+}
+
+.modal-field__input,
+.modal-field__textarea,
+.modal-field__select {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--modal-border);
+  background-color: var(--modal-input-bg);
+  color: var(--modal-text);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-field__textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.modal-field__input::placeholder,
+.modal-field__textarea::placeholder {
+  color: var(--modal-text-soft);
+}
+
+.modal-field__input:focus,
+.modal-field__textarea:focus,
+.modal-field__select:focus {
+  border-color: var(--modal-accent);
+  box-shadow: 0 0 0 3px rgba(227, 173, 92, 0.18);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.modal-cancel-btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--modal-text-soft);
+  background: none;
+  border: 1px solid var(--modal-border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.modal-cancel-btn:hover {
+  background-color: var(--modal-cancel-hover);
+  color: var(--modal-text);
+}
+
+.modal-submit-btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--modal-accent-text);
+  background-color: var(--modal-accent);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.modal-submit-btn:hover {
+  opacity: 0.88;
+}
+
+.modal-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.modal-cancel-btn:focus-visible,
+.modal-submit-btn:focus-visible,
+.modal-field__input:focus-visible,
+.modal-field__textarea:focus-visible,
+.modal-field__select:focus-visible {
+  outline: 2px solid var(--modal-accent);
+  outline-offset: 2px;
+}
