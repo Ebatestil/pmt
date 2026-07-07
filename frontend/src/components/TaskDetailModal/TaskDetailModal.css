@@ -1,0 +1,277 @@
+.task-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.task-modal-card {
+  --tm-bg: #1c1d24;
+  --tm-border: #2c2d35;
+  --tm-text: #f2f1ee;
+  --tm-text-soft: #9b9ca6;
+  --tm-text-faint: #6b6c76;
+  --tm-input-bg: #14151a;
+  --tm-accent: #e3ad5c;
+  --tm-accent-text: #1c1208;
+  --tm-hover: #24252d;
+  --tm-todo-bg: rgba(227, 173, 92, 0.12);
+  --tm-todo-text: #e3ad5c;
+  --tm-inprogress-bg: rgba(79, 90, 255, 0.12);
+  --tm-inprogress-text: #8b96ff;
+  --tm-done-bg: rgba(47, 111, 98, 0.15);
+  --tm-done-text: #4fad8f;
+
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--tm-bg);
+  border: 1px solid var(--tm-border);
+  border-radius: 16px;
+  box-sizing: border-box;
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  color: var(--tm-text);
+  transition: background-color 0.2s ease;
+  overflow: hidden;
+}
+
+/* ===== Light theme ===== */
+.task-modal-card[data-theme="light"] {
+  --tm-bg: #ffffff;
+  --tm-border: #e4e4e0;
+  --tm-text: #16181d;
+  --tm-text-soft: #6b6c76;
+  --tm-text-faint: #9b9ca6;
+  --tm-input-bg: #fafaf8;
+  --tm-accent: #e3ad5c;
+  --tm-accent-text: #1c1208;
+  --tm-hover: #f5f4f1;
+  --tm-todo-bg: rgba(227, 173, 92, 0.1);
+  --tm-todo-text: #b8832a;
+  --tm-inprogress-bg: rgba(79, 90, 255, 0.08);
+  --tm-inprogress-text: #4f5aff;
+  --tm-done-bg: rgba(47, 111, 98, 0.1);
+  --tm-done-text: #2f6f62;
+}
+
+/* ===== Header ===== */
+.task-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 22px 16px;
+  border-bottom: 1px solid var(--tm-border);
+}
+
+.task-modal-header__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-modal-project {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tm-accent);
+  margin: 0 0 6px 0;
+}
+
+.task-modal-title {
+  font-family: "Georgia", "Iowan Old Style", serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--tm-text);
+  margin: 0;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.task-modal-title--done {
+  text-decoration: line-through;
+  color: var(--tm-text-soft);
+}
+
+.task-modal-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: none;
+  border: none;
+  color: var(--tm-text-soft);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.task-modal-close:hover {
+  background-color: var(--tm-hover);
+  color: var(--tm-text);
+}
+
+/* ===== Progress bar ===== */
+.task-modal-progress {
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--tm-border);
+  background-color: var(--tm-input-bg);
+}
+
+.task-modal-progress__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.task-modal-progress__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tm-text-soft);
+}
+
+.task-modal-progress__value {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--tm-accent);
+}
+
+.task-modal-progress__track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--tm-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.task-modal-progress__fill {
+  height: 100%;
+  background-color: var(--tm-accent);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* ===== Body ===== */
+.task-modal-body {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===== Meta row ===== */
+.task-modal-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-modal-status {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.task-modal-status--todo       { background-color: var(--tm-todo-bg);       color: var(--tm-todo-text); }
+.task-modal-status--in_progress { background-color: var(--tm-inprogress-bg); color: var(--tm-inprogress-text); }
+.task-modal-status--done       { background-color: var(--tm-done-bg);       color: var(--tm-done-text); }
+
+.task-modal-date {
+  font-size: 12px;
+  color: var(--tm-text-faint);
+  margin-left: auto;
+}
+
+/* ===== Description ===== */
+.task-modal-section__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tm-text-soft);
+  margin: 0 0 8px 0;
+}
+
+.task-modal-description {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--tm-text-soft);
+  margin: 0;
+}
+
+.task-modal-no-description {
+  font-size: 13px;
+  color: var(--tm-text-faint);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ===== Done checkbox ===== */
+.task-modal-done-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background-color: var(--tm-hover);
+  border: 1px solid var(--tm-border);
+}
+
+.task-modal-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.task-modal-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--tm-accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.task-modal-checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.task-modal-checkbox-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tm-text);
+}
+
+.task-modal-updating {
+  font-size: 12px;
+  color: var(--tm-text-faint);
+  flex-shrink: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .task-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .task-modal-card {
+    max-width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
