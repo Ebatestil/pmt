@@ -8,7 +8,7 @@
   --mt-accent: #e3ad5c;
   --mt-accent-text: #1c1208;
   --mt-row-hover: #24252d;
- 
+
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -18,7 +18,7 @@
   color: var(--mt-text);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
- 
+
 .mytasks-page[data-theme="light"] {
   --mt-bg: #fafaf8;
   --mt-card-bg: #ffffff;
@@ -30,7 +30,7 @@
   --mt-accent-text: #1c1208;
   --mt-row-hover: #f5f4f1;
 }
- 
+
 .mytasks-body {
   display: flex;
   flex: 1;
@@ -50,6 +50,7 @@
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 28px;
+  flex-wrap: wrap;
 }
 
 .mytasks-heading {
@@ -66,7 +67,48 @@
   margin: 0;
 }
 
-/* table */
+/* ===== Search bar ===== */
+.mytasks-search {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--mt-border);
+  background-color: var(--mt-card-bg);
+  color: var(--mt-text);
+  outline: none;
+  width: 280px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  align-self: flex-end;
+}
+
+.mytasks-search::placeholder {
+  color: var(--mt-text-faint);
+}
+
+.mytasks-search:focus {
+  border-color: var(--mt-accent);
+  box-shadow: 0 0 0 3px rgba(227, 173, 92, 0.18);
+}
+
+/* ===== Empty state ===== */
+.mytasks-empty {
+  border: 1px dashed var(--mt-border);
+  border-radius: 12px;
+  padding: 40px 24px;
+  text-align: center;
+  background-color: var(--mt-card-bg);
+}
+
+.mytasks-empty_title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--mt-text-soft);
+  margin: 0;
+}
+
+/* ===== Table ===== */
 .mytasks-table-wrap {
   border: 1px solid var(--mt-border);
   border-radius: 12px;
@@ -74,10 +116,10 @@
   background-color: var(--mt-card-bg);
 }
 
-.mytasks-table{
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
+.mytasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
 }
 
 .mytasks-table thead {
@@ -113,6 +155,7 @@
   cursor: pointer;
 }
 
+/* ===== Status badges ===== */
 .mytasks-status {
   font-size: 11px;
   font-weight: 600;
@@ -121,18 +164,48 @@
   border-radius: 999px;
 }
 
+.mytasks-status--todo {
+  background-color: rgba(227, 173, 92, 0.12);
+  color: var(--mt-accent);
+}
+
 .mytasks-status--in_progress {
-  background-color: rgba(47, 111, 98, 0.15);
+  background-color: rgba(79, 90, 255, 0.12);
   color: #8b96ff;
 }
 
 .mytasks-status--done {
-  background-color: rgba(79, 90, 255, 0.12);
+  background-color: rgba(47, 111, 98, 0.15);
   color: #4fad8f;
 }
 
-.mytasks-status--todo {
-  background-color: rgba(227, 173, 92, 0.12);
-  color: #e3ad5c;
+.mytasks-page[data-theme="light"] .mytasks-status--todo {
+  background-color: rgba(227, 173, 92, 0.1);
+  color: #b8832a;
 }
 
+.mytasks-page[data-theme="light"] .mytasks-status--in_progress {
+  background-color: rgba(79, 90, 255, 0.08);
+  color: #4f5aff;
+}
+
+.mytasks-page[data-theme="light"] .mytasks-status--done {
+  background-color: rgba(47, 111, 98, 0.1);
+  color: #2f6f62;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .mytasks-content {
+    padding: 24px 16px;
+  }
+
+  .mytasks-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mytasks-search {
+    width: 100%;
+  }
+}
