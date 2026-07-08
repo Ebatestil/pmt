@@ -4,8 +4,7 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import TaskDetailModal from "../../components/TaskDetailModal";
 import { fetchTasks } from "../../api/Tasks";
-import type { TaskResponse } from "../../api/Tasks";
-import "./MyTask.css";
+import type { TaskResponse } from "../../api/Tasks";import "./MyTask.css";
 
 interface StoredUser {
   id: number;
@@ -25,6 +24,8 @@ export default function MyTasks() {
   const [myTasks, setMyTasks] = useState<TaskResponse[]>([]);
   const [selectedTask, setSelectedTask] = useState<TaskResponse | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 10;
 
   const userJson = localStorage.getItem("auth_user");
   const user: StoredUser = userJson ? JSON.parse(userJson) : null;
@@ -47,14 +48,6 @@ export default function MyTasks() {
     loadTasks();
   }, [loadTasks]);
 
-  function handleStatusChange(updatedTask: TaskResponse) {
-    setMyTasks((prev) =>
-      prev.map((t) => (t.id === updatedTask.id ? updatedTask : t))
-    );
-    // Keep the modal open with the updated task
-    setSelectedTask(updatedTask);
-  }
-
   const filteredTasks = myTasks.filter((t) => {
     const q = searchQuery.toLowerCase().trim();
     if (!q) return true;
@@ -64,6 +57,17 @@ export default function MyTasks() {
       t.status.toLowerCase().includes(q)
     );
   });
+
+  const totalPages = Math.ceil(filteredTasks.length / PAGE_SIZE);
+  const pagedTasks = filteredTasks.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
+
+  function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
+  }
 
   return (
     <div className="mytasks-page" data-theme={theme}>
@@ -83,7 +87,7 @@ export default function MyTasks() {
               className="mytasks-search"
               placeholder="Search by title, project, or status…"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleSearchChange}
             />
           </div>
 
@@ -91,7 +95,6 @@ export default function MyTasks() {
             <TaskDetailModal
               task={selectedTask}
               onClose={() => setSelectedTask(null)}
-              onStatusChange={(updatedTask, _progress) => handleStatusChange(updatedTask)}
             />
           )}
 
@@ -125,7 +128,7 @@ export default function MyTasks() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredTasks.map((mytask) => (
+                  {pagedTasks.map((mytask) => (
                     <tr
                       key={mytask.id}
                       className="mytasks-table__row--clickable"
@@ -142,6 +145,30 @@ export default function MyTasks() {
                   ))}
                 </tbody>
               </table>
+
+              {totalPages > 1 && (
+                <div className="mytasks-pagination">
+                  <button
+                    type="button"
+                    className="mytasks-pagination__btn"
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage((p) => p - 1)}
+                  >
+                    ‹
+                  </button>
+                  <span className="mytasks-pagination__label">
+                    {currentPage} / {totalPages}
+                  </span>
+                  <button
+                    type="button"
+                    className="mytasks-pagination__btn"
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage((p) => p + 1)}
+                  >
+                    ›
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>

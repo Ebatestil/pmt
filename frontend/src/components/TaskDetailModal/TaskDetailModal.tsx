@@ -7,13 +7,11 @@ import "./TaskDetailModal.css";
 interface TaskDetailModalProps {
   task: TaskResponse;
   onClose: () => void;
-  onStatusChange: (updatedTask: TaskResponse, progress: number) => void;
 }
 
 export default function TaskDetailModal({
   task,
   onClose,
-  onStatusChange,
 }: TaskDetailModalProps) {
   const { theme } = useTheme();
   const [currentTask, setCurrentTask] = useState<TaskResponse>(task);
@@ -30,9 +28,8 @@ export default function TaskDetailModal({
             task.id,
             "in_progress"
           );
-          setCurrentTask(updated);
+          setCurrentTask({ ...updated, project: task.project });
           setProgress(prog);
-          onStatusChange(updated, prog);
         } catch {
           // silent — fetch progress separately if status update fails
           try {
@@ -53,7 +50,7 @@ export default function TaskDetailModal({
       }
     }
     initModal();
-  }, []);
+  }, [task.id]);
 
   async function handleCheckboxChange(checked: boolean) {
     if (isUpdating) return;
@@ -65,14 +62,13 @@ export default function TaskDetailModal({
         currentTask.id,
         newStatus
       );
-      setCurrentTask(updated);
+      // Preserve the project field since updateStatus endpoint may not return it
+      setCurrentTask({ ...updated, project: currentTask.project });
       setProgress(prog);
-      onStatusChange(updated, prog);
     } catch {
       // silent
     } finally {
       setIsUpdating(false);
-    //   window.location.reload();
     }
   }
 
